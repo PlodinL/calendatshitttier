@@ -25,107 +25,125 @@
     <script>
 
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var activeEventDetails = null;
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    },
-    eventBackgroundColor: "#008000",
-    events: [
-    {
-        title: "New Year",
-        start: "2024-01-01",
-        editable: false,
-        extendedProps: {
-            description: 'Description of the event.'
-        }
-    },
-    {
-        title: "Resume of Classes",
-        start: "2024-01-03",
-        editable: false,
-        extendedProps: {
-            description: 'Description of the event.'
-        }
-    },
-    {
-        title: "HUMake A Difference",
-        start: "2024-01-05",
-        editable: false,
-        extendedProps: {
-            description: 'League of Humanities Event'
-        }
-    }
-],
-    eventClick: function (info) {
-        if (activeEventDetails) {
-            activeEventDetails.remove();
-        }
-        var eventTime = info.event.start.toLocaleTimeString([], {
-            hour: '2-digit',
-        });
-        var eventDescription = info.event.extendedProps.description;
-        var cancelButton = document.createElement('button');
-        cancelButton.textContent = 'Cancel';
-        cancelButton.classList.add('event-cancel');
-        cancelButton.addEventListener('click', function () {
-            info.event.remove();
-        });
-        var eventDetails = document.createElement('div');
-        eventDetails.classList.add('event-details');
-                    eventDetails.innerHTML = "<p><strong>Description:</strong> " + eventDescription + "</p>";
-                    eventDetails.appendChild(cancelButton);
-                    info.el.appendChild(eventDetails);
-                    activeEventDetails = eventDetails;
-                    info.el.addEventListener('mouseleave', function () {
-                        if (activeEventDetails) {
-                            activeEventDetails.remove();
-                            activeEventDetails = null;
-                        }
-                    });
-                },
-                editable: true,
-                selectable: true,
-                select: function (info) {
-                    var eventTitle = prompt("Event Title:");
-                    var eventDescription = prompt("Event Description:");
-                    if (eventTitle && eventDescription) {
-                        var start = info.startStr;
-                        calendar.addEvent({
-                            title: eventTitle,
-                            start: start,
-                            description: eventDescription,
-                        });
-                    }
-                },
-                eventDrop: function (info) {
-                    var event = info.event;
-                    var newStart = event.start.toISOString();
-                    var newEnd = event.end ? event.end.toISOString() : null;
-                    console.log("Event " + event.title + " was dropped to " + newStart);
-                    console.log("New end date: " + newEnd);
-                },
-                eventResize: function (info) {
-                    var event = info.event;
-                    var newStart = event.start.toISOString();
-                    var newEnd = event.end ? event.end.toISOString() : null;
-                    console.log("Event " + event.title + " was resized to " + newStart);
-                    console.log("New end date: " + newEnd);
-                },
-                eventDragStart: function (info) {
-                    info.el.style.zIndex = 9999;
-                },
-                eventDragStop: function (info) {
-                    info.el.style.zIndex = '';
+document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+    var activeEventDetails = null;
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        eventBackgroundColor: "#008000",
+        events: [
+            {
+                title: "New Year",
+                start: "2024-01-01",
+                editable: false,
+                extendedProps: {
+                    description: 'Description of the event.',
+                    premade: true // Set premade property to true for pre-made events
                 }
-            });
-            calendar.render();
-        });
+            },
+            {
+                title: "Resume of Classes",
+                start: "2024-01-03",
+                editable: false,
+                extendedProps: {
+                    description: 'Description of the event.',
+                    premade: true // Set premade property to true for pre-made events
+                }
+            },
+            {
+                title: "HUMake A Difference",
+                start: "2024-01-05",
+                editable: false,
+                extendedProps: {
+                    description: 'League of Humanities Event',
+                    premade: true // Set premade property to true for pre-made events
+                }
+            }
+        ],
+        eventClick: function (info) {
+            if (info.event.extendedProps.premade) {
+                var eventTime = info.event.start.toLocaleTimeString([], {
+                    hour: '2-digit',
+                });
+                var eventDescription = info.event.extendedProps.description;
+
+                var eventDetails = document.createElement('div');
+                eventDetails.classList.add('event-details');
+                eventDetails.innerHTML = "<p><strong>Description:</strong> " + eventDescription + "</p>";
+                info.el.appendChild(eventDetails);
+                activeEventDetails = eventDetails;
+
+                info.el.addEventListener('mouseleave', function () {
+                    if (activeEventDetails) {
+                        activeEventDetails.remove();
+                        activeEventDetails = null;
+                    }
+                });
+            } else {
+                var eventTime = info.event.start.toLocaleTimeString([], {
+                    hour: '2-digit',
+                });
+                var eventDescription = info.event.extendedProps.description;
+
+                var cancelButton = document.createElement('button');
+                cancelButton.textContent = 'Cancel';
+                cancelButton.classList.add('event-cancel');
+                cancelButton.addEventListener('click', function () {
+                    info.event.remove();
+                });
+
+                var eventDetails = document.createElement('div');
+                eventDetails.classList.add('event-details');
+                eventDetails.innerHTML = "<p><strong>Description:</strong> " + eventDescription + "</p>";
+                eventDetails.appendChild(cancelButton);
+                info.el.appendChild(eventDetails);
+                activeEventDetails = eventDetails;
+
+                info.el.addEventListener('mouseleave', function () {
+                    if (activeEventDetails) {
+                        activeEventDetails.remove();
+                        activeEventDetails = null;
+                    }
+                });
+            }
+        },
+        editable: true,
+        selectable: true,
+        select: function (info) {
+            var eventTitle = prompt("Event Title:");
+            var eventDescription = prompt("Event Description:");
+            if (eventTitle && eventDescription) {
+                var start = info.startStr;
+                calendar.addEvent({
+                    title: eventTitle,
+                    start: start,
+                    description: eventDescription,
+                });
+            }
+        },
+        eventDrop: function (info) {
+            var event = info.event;
+            var newStart = event.start.toISOString();
+            var newEnd = event.end ? event.end.toISOString() : null;
+            console.log("Event " + event.title + " was dropped to " + newStart);
+            console.log("New end date: " + newEnd);
+        },
+        eventResize: function (info) {
+            var event = info.event;
+            var newStart = event.start.toISOString();
+            var newEnd = event.end ? event.end.toISOString() : null;
+            console.log("Event " + event.title + " was resized");
+            console.log("New start date: " + newStart);
+            console.log("New end date: " + newEnd);
+        }
+    });
+    calendar.render();
+});
 
         var backgroundOptions = {
   banana: 'banana.jpg',
@@ -142,19 +160,20 @@ function changeBackground() {
   
   document.querySelector('body').style.backgroundImage = `url('${background}')`;
   
- 
+  // Store the selected background option in localStorage
   localStorage.setItem('selectedBackground', selectedOption);
 }
 
-
+// Check if a selected background option is stored in localStorage
 var storedBackground = localStorage.getItem('selectedBackground');
 if (storedBackground) {
- 
+  // Set the background selector to the stored option
   var selector = document.getElementById('backgroundSelector');
   selector.value = storedBackground;
 }
 
-  
+// Call the changeBackground function to set the initial background
+changeBackground();
     </script>
 </body>
 </html>
