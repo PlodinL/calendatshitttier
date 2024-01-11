@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 editable: false,
                 extendedProps: {
                     description: 'Description of the event.',
-                    premade: true // Set premade property to true for pre-made events
+                    premade: true 
                 }
             },
             {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 editable: false,
                 extendedProps: {
                     description: 'Description of the event.',
-                    premade: true // Set premade property to true for pre-made events
+                    premade: true 
                 }
             },
             {
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 editable: false,
                 extendedProps: {
                     description: 'League of Humanities Event',
-                    premade: true // Set premade property to true for pre-made events
+                    premade: true 
                 }
             }
         ],
@@ -85,31 +85,34 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
             } else {
-                var eventTime = info.event.start.toLocaleTimeString([], {
-                    hour: '2-digit',
-                });
-                var eventDescription = info.event.extendedProps.description;
+                if (!info.el.classList.contains('user-event')) {
+                    var eventTime = info.event.start.toLocaleTimeString([], {
+                        hour: '2-digit',
+                    });
+                    var eventDescription = info.event.extendedProps.description;
 
-                var cancelButton = document.createElement('button');
-                cancelButton.textContent = 'Cancel';
-                cancelButton.classList.add('event-cancel');
-                cancelButton.addEventListener('click', function () {
-                    info.event.remove();
-                });
+                    var cancelButton = document.createElement('button');
+                    cancelButton.textContent = 'Cancel';
+                    cancelButton.classList.add('event-cancel');
+                    cancelButton.addEventListener('click', function () {
+                        info.event.remove();
+                    });
 
-                var eventDetails = document.createElement('div');
-                eventDetails.classList.add('event-details');
-                eventDetails.innerHTML = "<p><strong>Description:</strong> " + eventDescription + "</p>";
-                eventDetails.appendChild(cancelButton);
-                info.el.appendChild(eventDetails);
-                activeEventDetails = eventDetails;
+                    var eventDetails = document.createElement('div');
+                    eventDetails.classList.add('event-details');
+                    eventDetails.innerHTML = "<p><strong>Description:</strong> " + eventDescription + "</p>";
+                    eventDetails.appendChild(cancelButton);
+                    info.el.appendChild(eventDetails);
+                    activeEventDetails = eventDetails;
+                    info.el.classList.add('user-event');
 
-                info.el.addEventListener('mouseleave', function () {
-                    if (activeEventDetails) {
-                        activeEventDetails.remove();
-                        activeEventDetails = null;
-                    }
-                });
+                    info.el.addEventListener('mouseleave', function () {
+                        if (activeEventDetails) {
+                            activeEventDetails.remove();
+                            activeEventDetails = null;
+                        }
+                    });
+                }
             }
         },
         editable: true,
@@ -160,19 +163,16 @@ function changeBackground() {
   
   document.querySelector('body').style.backgroundImage = `url('${background}')`;
   
-  // Store the selected background option in localStorage
   localStorage.setItem('selectedBackground', selectedOption);
 }
 
-// Check if a selected background option is stored in localStorage
 var storedBackground = localStorage.getItem('selectedBackground');
 if (storedBackground) {
-  // Set the background selector to the stored option
+
   var selector = document.getElementById('backgroundSelector');
   selector.value = storedBackground;
 }
 
-// Call the changeBackground function to set the initial background
 changeBackground();
     </script>
 </body>
