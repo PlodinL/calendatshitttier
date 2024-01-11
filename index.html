@@ -141,6 +141,23 @@ function changeBackground() {
   var background = backgroundOptions[selectedOption];
   
   document.querySelector('body').style.backgroundImage = `url('${background}')`;
+  
+ 
+  localStorage.setItem('selectedBackground', selectedOption);
+}
+
+
+var storedBackground = localStorage.getItem('selectedBackground');
+if (storedBackground) {
+ 
+  var selector = document.getElementById('backgroundSelector');
+  selector.value = storedBackground;
+}
+
+
+changeBackground();
+  
+  document.querySelector('body').style.backgroundImage = `url('${background}')`;
 }
     </script>
 </body>
