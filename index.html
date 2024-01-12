@@ -66,55 +66,59 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         ],
         eventClick: function (info) {
-            if (info.event.extendedProps.premade) {
-                var eventTime = info.event.start.toLocaleTimeString([], {
-                    hour: '2-digit',
-                });
-                var eventDescription = info.event.extendedProps.description;
+    if (info.event.extendedProps.premade) {
+        var eventTime = info.event.start.toLocaleTimeString([], {
+            hour: '2-digit',
+        });
+        var eventDescription = info.event.extendedProps.description;
 
-                var eventDetails = document.createElement('div');
-                eventDetails.classList.add('event-details');
-                eventDetails.innerHTML = "<p><strong>Description:</strong> " + eventDescription + "</p>";
-                info.el.appendChild(eventDetails);
-                activeEventDetails = eventDetails;
+        var eventDetails = info.el.querySelector('.event-details'); // check if event details already exist
+        if (!eventDetails) {
+            eventDetails = document.createElement('div');
+            eventDetails.classList.add('event-details');
+            eventDetails.innerHTML = "<p><strong>Description:</strong> " + eventDescription + "</p>";
+            info.el.appendChild(eventDetails);
+        }
 
-                info.el.addEventListener('mouseleave', function () {
-                    if (activeEventDetails) {
-                        activeEventDetails.remove();
-                        activeEventDetails = null;
-                    }
-                });
-            } else {
-                if (!info.el.classList.contains('user-event')) {
-                    var eventTime = info.event.start.toLocaleTimeString([], {
-                        hour: '2-digit',
-                    });
-                    var eventDescription = info.event.extendedProps.description;
+        activeEventDetails = eventDetails;
 
-                    var cancelButton = document.createElement('button');
-                    cancelButton.textContent = 'Cancel';
-                    cancelButton.classList.add('event-cancel');
-                    cancelButton.addEventListener('click', function () {
-                        info.event.remove();
-                    });
-
-                    var eventDetails = document.createElement('div');
-                    eventDetails.classList.add('event-details');
-                    eventDetails.innerHTML = "<p><strong>Description:</strong> " + eventDescription + "</p>";
-                    eventDetails.appendChild(cancelButton);
-                    info.el.appendChild(eventDetails);
-                    activeEventDetails = eventDetails;
-                    info.el.classList.add('user-event');
-
-                    info.el.addEventListener('mouseleave', function () {
-                        if (activeEventDetails) {
-                            activeEventDetails.remove();
-                            activeEventDetails = null;
-                        }
-                    });
-                }
+        info.el.addEventListener('mouseleave', function () {
+            if (activeEventDetails) {
+                activeEventDetails.remove();
+                activeEventDetails = null;
             }
-        },
+        });
+    } else {
+        if (!info.el.classList.contains('user-event')) {
+            var eventTime = info.event.start.toLocaleTimeString([], {
+                hour: '2-digit',
+            });
+            var eventDescription = info.event.extendedProps.description;
+
+            var cancelButton = document.createElement('button');
+            cancelButton.textContent = 'Cancel';
+            cancelButton.classList.add('event-cancel');
+            cancelButton.addEventListener('click', function () {
+                info.event.remove();
+            });
+
+            var eventDetails = document.createElement('div');
+            eventDetails.classList.add('event-details');
+            eventDetails.innerHTML = "<p><strong>Description:</strong> " + eventDescription + "</p>";
+            eventDetails.appendChild(cancelButton);
+            info.el.appendChild(eventDetails);
+            activeEventDetails = eventDetails;
+            info.el.classList.add('user-event');
+
+            info.el.addEventListener('mouseleave', function () {
+                if (activeEventDetails) {
+                    activeEventDetails.remove();
+                    activeEventDetails = null;
+                }
+            });
+        }
+    }
+},
         editable: true,
         selectable: true,
         select: function (info) {
