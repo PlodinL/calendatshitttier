@@ -55,7 +55,7 @@
       #backgroundSelector {
         position: fixed; 
         bottom: 255px;
-        left: 49%;
+        left: 35%;
         transform: translateX(-50%);
         font-family: Arial, sans-serif;
         font-size: 10px;
