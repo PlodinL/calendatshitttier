@@ -53,7 +53,7 @@
       }
       
       #backgroundSelector {
-        position: fixed; 
+        position: absolute; 
         bottom: 255px;
         left: 35%;
         transform: translateX(-50%);
