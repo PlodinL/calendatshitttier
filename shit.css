@@ -12,18 +12,23 @@
         margin: 0 auto;
     }
 
-    .event-details {
+        .event-details {
         background-color: #fff;
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
         max-width: 300px;
         margin: 10px auto; 
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: anywhere;
     }
     .event-details strong {
         display: block;
         margin-bottom: 5px; 
-
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: anywhere;
     }
     .event-details p {
         margin-bottom: 10px; 
