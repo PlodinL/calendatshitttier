@@ -53,8 +53,8 @@
       }
       
       #backgroundSelector {
-        position: absolute;
-        bottom: 53px;
+        position: fixed; 
+        bottom: 255px;
         left: 49%;
         transform: translateX(-50%);
         font-family: Arial, sans-serif;
@@ -67,7 +67,7 @@
         width: 72px;
         margin-bottom: 681px;
         z-index: 8;
-    }
+      }
 
       .fc-event-title {
         white-space: normal;
