@@ -4,8 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.css">
     <link rel="stylesheet" href="shit.css">
+
 </head>
 <body>
+
+
 
     <select id="backgroundSelector" onchange="changeBackground()">
         <option value="banana">Banana</option>
@@ -36,32 +39,37 @@ document.addEventListener('DOMContentLoaded', function () {
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         eventBackgroundColor: "#008000",
-         events: [
-    {
-        title: "New Year",
-        start: "2024-01-01",
-        editable: false,
-        extendedProps: {
-            description: 'Description of the event.'
-        }
-    },
-    {
-        title: "Resume of Classes",
-        start: "2024-01-03",
-        editable: false,
-        extendedProps: {
-            description: 'Description of the event.'
-        }
-    },
-    {
-        title: "HUMake A Difference",
-        start: "2024-01-05",
-        editable: false,
-        extendedProps: {
-            description: 'League of Humanities Event'
-        }
-    }
-{
+        events: [
+            {
+                title: "New Year",
+                start: "2024-01-01",
+                editable: false,
+                extendedProps: {
+                    description: 'Description of the event.',
+                    premade: true 
+                }
+            },
+
+            {
+                title: "Resume of Classes",
+                start: "2024-01-03",
+                editable: false,
+                extendedProps: {
+                    description: 'Description of the event.',
+                    premade: true 
+                }
+            },
+            {
+                title: "HUMake A Difference",
+                start: "2024-01-05",
+                editable: false,
+                extendedProps: {
+                    description: 'League of Humanities Event',
+                    premade: true 
+                }
+            },
+
+            {
                 title: "World Aids Day",
                 start: "2023-12-01",
                 editable: false,
@@ -953,6 +961,18 @@ if (storedBackground) {
 }
 
 changeBackground();
+
+function redirectToLogin() {
+                window.location.href = "login.html";
+            }
+
+            function redirectToSignup() {
+                window.location.href = "signup.html";
+            }
+
+
+
+
     </script>
 </body>
 </html>
