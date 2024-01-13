@@ -11,9 +11,10 @@
 
 
     <select id="backgroundSelector" onchange="changeBackground()">
-        <option value="banana">Banana</option>
-        <option value="banana2">Banana2</option>
-        <option value="banana3">Banana3</option>
+        <option value="Winter">Winter</option>
+        <option value="Autumn">Autumn</option>
+        <option value="Summer">Summer</option>
+        <option value="Spring">Spring</option>
       </select>
 
     <div id="calendar"></div>
@@ -40,22 +41,13 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         eventBackgroundColor: "#008000",
         events: [
-            {
-                title: "New Year",
-                start: "2024-01-01",
-                editable: false,
-                extendedProps: {
-                    description: 'Description of the event.',
-                    premade: true 
-                }
-            },
-
+           
             {
                 title: "Resume of Classes",
                 start: "2024-01-03",
                 editable: false,
                 extendedProps: {
-                    description: 'Description of the event.',
+                    description: 'Resumption of Classes',
                     premade: true 
                 }
             },
@@ -74,13 +66,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: "2023-12-01",
                 editable: false,
                 extendedProps: {
-                    description: 'By:The League of Humanities .',
+                    description: 'League of Humanities Event',
                     premade: true 
                 }
             },
-
-
-
 
 
 {
@@ -88,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: "2023-12-01",
                 editable: false,
                 extendedProps: {
-                    description: 'By: The league of Humanities.',
+                    description: 'League of Humanities Event',
                     premade: true 
                 }
             },
@@ -100,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: "2023-12-01",
                 editable: false,
                 extendedProps: {
-                    description: 'By: The League Of Humanities.',
+                    description: 'League of Humanities Event',
                     premade: true 
                 }
             },
@@ -155,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: "2023-12-02",
                 editable: false,
                 extendedProps: {
-                    description: 'BY: SCOM.',
+                    description: 'SCOM Event',
                     premade: true 
                 }
             },
@@ -167,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: "2023-12-02",
                 editable: false,
                 extendedProps: {
-                    description: 'By: ICTSOC.',
+                    description: 'ICTSOCIETY EVENT',
                     premade: true 
                 }
             },
@@ -193,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: "2023-12-03",
                 editable: false,
                 extendedProps: {
-                    description: 'By: The League of Humanities.',
+                    description: 'League of Humanities Event',
                     premade: true 
                 }
             },
@@ -205,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: "2023-12-03",
                 editable: false,
                 extendedProps: {
-                    description: 'By: SIKLAB.',
+                    description: 'SIKLAB Event',
                     premade: true 
                 }
             },
@@ -219,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: "2023-12-04",
                 editable: false,
                 extendedProps: {
-                    description: 'AHSPIRE.',
+                    description: 'Allied Health Services Event',
                     premade: true 
                 }
             },
@@ -231,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: "2023-12-07",
                 editable: false,
                 extendedProps: {
-                    description: 'BY: HUMSS.',
+                    description: 'HUMSS Event',
                     premade: true 
                 }
             },
@@ -583,13 +572,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             },
 
-
-
-
-
-
-
-
             {
                 title: "Alexi's Birthday",
                 start: "2024-08-13",
@@ -936,9 +918,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
         var backgroundOptions = {
-  banana: 'banana.jpg',
-  banana2: 'banana2.jpg',
-  banana3: 'banana3.jpg'
+  Winter: 'WINTER.png',
+  Summer: 'SUMMER.png',
+  Spring: 'SPRING.png',
+  Autumn: 'AUTUMN.png',
 };
 
 var currentBackgroundIndex = 0;
